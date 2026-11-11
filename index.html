@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--
+  HOW TO EDIT THIS PAGE
+  1. Open this file in any text editor (VS Code, Notepad, TextEdit in plain-text mode).
+  2. Search for class="ph": every dashed box is a placeholder. Replace the text and delete class="ph".
+  3. To add a publication or a degree, copy a whole <li>...</li> block and edit it.
+  4. Colours and fonts are the variables at the top of <style> (--hema, --eosin, --paper...).
+  5. Keep mammo-prep.html in the same folder: it is the interactive demo.
+  6. Save, refresh the browser. To publish, upload both files (GitHub Pages, Cloudflare Pages...).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enric — Foundation models for breast imaging</title>
+<meta name="description" content="PhD student at the University of Girona. Foundation models for lesion detection and text generation in breast imaging.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F2F5; --ink:#1B1530; --hema:#3E2C73; --eosin:#D8587F; --mute:#6B6480; --line:#DDD3E0;
+  --serif:"Fraunces",Georgia,serif; --sans:"Public Sans",system-ui,sans-serif; color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--sans)}
+a{color:var(--hema);text-underline-offset:3px}
+a:hover{color:var(--eosin)}
+:focus-visible{outline:3px solid var(--eosin);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;flex-wrap:wrap;gap:.75rem}
+header.top .brand{font:600 1.1rem var(--serif);text-decoration:none;color:var(--ink)}
+nav a{margin-left:1.4rem;text-decoration:none;color:var(--ink);font-weight:500;font-size:.95rem}
+nav a:hover{color:var(--eosin)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;padding:3rem 0 4.5rem}
+h1{font:600 clamp(2.5rem,5.6vw,4.2rem)/1.04 var(--serif);letter-spacing:-.02em;margin:0 0 1.2rem;color:var(--hema)}
+.lead{font-size:1.18rem;max-width:34em;margin:0 0 1.5rem}
+.meta{color:var(--mute);margin:0 0 1.6rem}
+.btns a{display:inline-block;padding:.65rem 1.2rem;border-radius:999px;text-decoration:none;font-weight:600;margin:0 .6rem .6rem 0}
+.btn1{background:var(--hema);color:#fff}
+.btn1:hover{background:var(--eosin);color:#fff}
+.btn2{border:1.5px solid var(--hema)}
+figure{margin:0}
+canvas{width:100%;height:auto;aspect-ratio:1;border-radius:6px;background:#15101f;display:block;touch-action:none}
+figcaption{font-size:.88rem;color:var(--mute);margin-top:.6rem}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+h2{font:600 1.9rem/1.15 var(--serif);margin:0 0 1.5rem;color:var(--hema)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+h3{font:600 1.15rem/1.3 var(--serif);margin:0 0 .4rem}
+p{margin:0 0 1rem;max-width:62ch}
+ul.plain{list-style:none;padding:0;margin:0}
+ul.plain li{padding:1rem 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:7rem 1fr;gap:1rem}
+ul.plain li:first-child{padding-top:0}
+.yr{color:var(--eosin);font-weight:600}
+.ph{background:#fff;border:1px dashed var(--eosin);border-radius:4px;padding:.05rem .35rem;font-size:.92em}
+iframe{width:100%;height:1000px;border:1px solid var(--line);border-radius:6px;background:#fff;display:block}
+footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--mute);font-size:.92rem}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:2rem}ul.plain li{grid-template-columns:1fr;gap:.2rem}nav a{margin:0 1rem 0 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="#">Enric <span>Sena Alvarez</span></a>
+  <nav aria-label="Main"><a href="#research">Research</a><a href="#demo">Demo</a><a href="#publications">Publications</a><a href="#education">Education</a><a href="#contact">Contact</a></nav>
+</header>
+
+<main>
+<div class="hero">
+  <div>
+    <h1>Foundation models for breast imaging</h1>
+    <p class="lead">I am a PhD student at the University of Girona. I study how large pretrained vision and vision-language models can detect lesions and generate clinical text from mammography.</p>
+    <p class="meta">PhD student · Medical Imaging Group · VICOROB · Universitat de Girona</p>
+    <div class="btns"><a class="btn1" href="#research">Read about the research</a><a class="btn2" href="#demo">Try the demo</a></div>
+  </div>
+  <figure>
+    <canvas id="c" width="560" height="560" role="img" aria-label="Synthetic breast image split into regions. Hover to highlight the regions a model associates with each word."></canvas>
+    <figcaption>Synthetic image, not real data. Move the cursor to see which regions are linked to each word.</figcaption>
+  </figure>
+</div>
+
+<section id="research">
+  <h2>Research</h2>
+  <div class="grid">
+    <div><h3>Lesion detection</h3><p>Adapting large pretrained vision backbones to localise masses, calcifications and other findings, with detection heads that transfer across views, scanners and datasets.</p></div>
+    <div><h3>Text generation</h3><p>Vision-language models that ground findings in the image and generate structured, clinically faithful radiology text, evaluated beyond n-gram overlap.</p></div>
+    <div><h3>Foundation models for the breast</h3><p>Self-supervised and multimodal pretraining on mammography, parameter-efficient fine-tuning, domain adaptation and zero- or few-shot transfer to new clinical tasks.</p></div>
+  </div>
+</section>
+
+<section id="demo">
+  <h2>Interactive demo: mammography preprocessing</h2>
+  <p>Models only perform as well as their inputs. This demo follows a 14-bit DICOM mammogram through windowing, breast cropping and resizing, and shows how annotations stay aligned at every step. It uses a synthetic image, with no patient data.</p>
+  <iframe id="demoFrame" src="mammo-prep.html" title="Interactive mammography preprocessing demo" loading="lazy"></iframe>
+  <p style="margin-top:.8rem"><a href="mammo-prep.html">Open the demo in its own page</a></p>
+</section>
+
+<section id="publications">
+  <h2>Publications</h2>
+  <ul class="plain">
+    <li><span class="yr">2024</span><span><span>Application of Deep Learning Models in Image Segmentation</span><br>Enric Sena Alvarez, Antonio Lozano Bagén,  · UAB Digital Document Repository · <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=8VjZtqsAAAAJ&citation_for_view=8VjZtqsAAAAJ:u5HHmVD_uO8C">PDF</a></span></li>
+    <!-- <li><span class="yr">2026</span><span><span class="ph">Add the next publication here</span></span></li> -->
+  </ul>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <ul class="plain">
+    <li><span class="yr">2026– <span class="ph">2030 </span></span><span><strong>PhD</strong> · Universitat de Girona<br>Foundation models for breast imaging.</span></li>
+    <li><span class="yr"><span>2024-2025</span></span><span><strong>MSc in Big Data &amp; Visual Analytics</strong></span></li>
+    <li><span class="yr"><span>2019-2024</span></span><span><strong>BSc in Applied Statistics</strong> · Universitat Autònoma de Barcelona</span></li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p><a href="mailto:enricsena@gmail.com">enricsena@gmail.com</a></p>
+  <p><a href="https://github.com/Senna256">GitHub</a> · <a href="https://scholar.google.com/citations?user=8VjZtqsAAAAJ&hl=en">Google Scholar</a> · <a href="https://www.linkedin.com/in/enric-sena-alvarez/">LinkedIn</a> · <a href="https://orcid.org/0009-0005-6355-2165">ORCID</a></p>
+</section>
+</main>
+
+<footer>© 2026 Enric <span>Sena Alvarez</span> · Girona, Catalonia</footer>
+</div>
+
+<script>
+(function(){
+  var cv=document.getElementById('c'),ctx=cv.getContext('2d');
+  var N=14,S=cv.width/N;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function val(x,y){
+    var u=x/cv.width,v=y/cv.height,d=Math.hypot(u-.35,v-.5);
+    var b=Math.max(0,1-d*1.55)*.55+Math.sin(u*18+v*7)*.03+Math.sin(v*31)*.02;
+    b+=Math.exp(-(Math.pow(u-.5,2)+Math.pow(v-.42,2))*180)*.55;
+    b+=Math.exp(-(Math.pow(u-.3,2)+Math.pow(v-.68,2))*900)*.7;
+    return Math.max(0,Math.min(1,b));
+  }
+  var base=document.createElement('canvas');base.width=cv.width;base.height=cv.height;
+  var bc=base.getContext('2d'),id=bc.createImageData(cv.width,cv.height);
+  for(var y=0;y<cv.height;y++)for(var x=0;x<cv.width;x++){
+    var g=Math.round(val(x,y)*255),i=(y*cv.width+x)*4;
+    id.data[i]=g;id.data[i+1]=g;id.data[i+2]=g;id.data[i+3]=255;
+  }
+  bc.putImageData(id,0,0);
+  var words=[
+    {w:'mass',cells:[[7,5],[7,6],[6,5],[8,5],[6,6]]},
+    {w:'calcifications',cells:[[4,9],[4,10],[5,9],[3,9]]},
+    {w:'dense tissue',cells:[[3,4],[4,4],[3,5],[4,5],[3,6],[4,6],[5,6],[5,7],[4,7]]}
+  ];
+  var cur=-1;
+  function draw(){
+    ctx.drawImage(base,0,0);
+    ctx.strokeStyle='rgba(255,255,255,.14)';ctx.lineWidth=1;
+    for(var i=1;i<N;i++){ctx.beginPath();ctx.moveTo(i*S,0);ctx.lineTo(i*S,cv.height);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i*S);ctx.lineTo(cv.width,i*S);ctx.stroke();}
+    if(cur>=0){
+      words[cur].cells.forEach(function(c){ctx.fillStyle='rgba(216,88,127,.55)';ctx.fillRect(c[0]*S,c[1]*S,S,S);ctx.strokeStyle='#D8587F';ctx.lineWidth=2;ctx.strokeRect(c[0]*S+1,c[1]*S+1,S-2,S-2);});
+      ctx.font='600 20px Public Sans,sans-serif';ctx.fillStyle='#fff';ctx.fillText('“'+words[cur].w+'”',14,cv.height-16);
+    }
+  }
+  function pick(e){
+    var r=cv.getBoundingClientRect(),p=e.touches?e.touches[0]:e;
+    var cx=Math.floor((p.clientX-r.left)/r.width*N),cy=Math.floor((p.clientY-r.top)/r.height*N),f=-1;
+    words.forEach(function(o,i){o.cells.forEach(function(c){if(c[0]===cx&&c[1]===cy)f=i;});});
+    if(f!==cur){cur=f;draw();}
+  }
+  cv.addEventListener('mousemove',pick);cv.addEventListener('touchstart',pick,{passive:true});cv.addEventListener('touchmove',pick,{passive:true});
+  cv.addEventListener('mouseleave',function(){cur=-1;draw();});
+  draw();
+  if(!reduce){var k=0,t=setInterval(function(){if(cur!==-1&&k>0){clearInterval(t);return;}cur=k%words.length;draw();k++;if(k>3){clearInterval(t);cur=-1;draw();}},900);}
+})();
+// Resize the demo iframe to fit its content
+(function(){
+  var f=document.getElementById('demoFrame');
+  addEventListener('message',function(e){
+    if(e.source===f.contentWindow&&e.data&&e.data.mammoPrepHeight)f.style.height=(e.data.mammoPrepHeight+4)+'px';
+  });
+})();
+</script>
+</body>
+</html>
